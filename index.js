@@ -10,7 +10,7 @@ const rl = readline.createInterface({
  */
 const setNumber = () => {
     return new Promise((resolve, reject) => {
-        rl.question(`Choose a number between 0-100: `, (data) => {
+        rl.question(`\nChoose a number between 0-100: `, (data) => {
             if (data >= 0 && data <= 100) {
                 resolve({value: data})
             } else {
@@ -61,7 +61,6 @@ const step = async (value) => {
  *  Start of the game
  */
 const main = async () => {
-    console.log('Player 1:')
     await setNumber().then(
         data => {
             console.clear()
@@ -69,9 +68,11 @@ const main = async () => {
             step(data.value)
         },
         error => {
+            console.log(error.message)
             main()
         }
     )
 }
 
+console.log('Player 1:')
 main()
