@@ -55,6 +55,7 @@ const readMolecule = (value) => {
 }
 
 /**
+ * 
  * Get the molar mass of an atome
  * @param {*} atome 
  */
@@ -74,24 +75,17 @@ const size = (atome) => {
  * Main process
  */
 const main = async () => {
-    setMolecule().then(
-        value => {
-            readMolecule(value).then(
-                success => {
-                    console.log(`The molar mass of this molecule is ${success.value} g.mol-1`),
-                    rl.close()
-                },
-                error => {
-                    console.log(error.message)
-                    main()
-                }
-            )
-        },
-        error => {
+    setMolecule()
+        .then((value) => readMolecule(value).then(
+            success => {
+                console.log(`The molar mass of this molecule is ${success.value} g.mol-1`),
+                rl.close()
+            }
+        ))
+        .catch((error) => {
             console.log(error.message)
             main()
-        }
-    )
+        })
 }
 
 console.clear()
