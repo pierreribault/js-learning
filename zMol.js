@@ -1,8 +1,9 @@
-const fs = require('fs')
-const readline = require('readline')
-const atomes = JSON.parse(fs.readFileSync('atomes.json'))
+import { readFileSync } from 'fs'
+import { createInterface } from 'readline'
 
-const rl = readline.createInterface({
+const atomes = JSON.parse(readFileSync('atomes.json'))
+
+const rl = createInterface({
     input: process.stdin,
     output: process.stdout
 })
